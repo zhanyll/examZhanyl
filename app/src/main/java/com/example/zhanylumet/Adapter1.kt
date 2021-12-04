@@ -10,6 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Adapter1(var contact: List<Contacts>, private val click: (contacts: Contacts) -> Unit): RecyclerView.Adapter<Adapter1.ViewHolder>() {
 
+    fun setData(contact: List<Contacts>) {
+        this.contact = contact
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_recycler, parent, false)

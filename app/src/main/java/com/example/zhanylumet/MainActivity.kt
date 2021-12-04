@@ -3,6 +3,7 @@ package com.example.zhanylumet
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.zhanylumet.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), OnFragmentClick {
@@ -17,6 +18,17 @@ class MainActivity : AppCompatActivity(), OnFragmentClick {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, Fragment1())
             .commit()
+
+
+        when(intent.action) {
+            "contactApp" -> {
+                val extra = intent.getStringExtra("key")
+                Toast.makeText(this, "This is $extra!", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(this, "Wrong action!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onClicked(contacts: Contacts) {
@@ -29,7 +41,7 @@ class MainActivity : AppCompatActivity(), OnFragmentClick {
         fragment2.arguments = bundle
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment2)
+            .add(R.id.fragment_container, fragment2)
             .addToBackStack(null)
             .commit()
     }

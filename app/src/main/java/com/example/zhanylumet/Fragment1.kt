@@ -49,13 +49,12 @@ class Fragment1: Fragment(R.layout.fragment_1) {
             if (!(name == "" || number == "")) {
                 val new: Contacts = Contacts(name, number)
                 contactList.add(new)
-                adapter.notifyDataSetChanged()
+                adapter.setData(contactList)
+                binding.editName.text = null
+                binding.editNumber.text = null
             } else {
                 Toast.makeText(requireContext(), "Enter name and number!!!", Toast.LENGTH_SHORT).show()
             }
-
-            binding.editName.text = null
-            binding.editNumber.text = null
         }
     }
 
